@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useEffect } from 'react'
 
 async function getPosts() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_apiurl}/content/posts/?key=${process.env.NEXT_PUBLIC_apiKEY}`)
+  const res = await fetch(`${process.env.NEXT_PUBLIC_apiurl}/content/posts/?key=${process.env.NEXT_PUBLIC_apiKEY}&fields=title,slug,custom_excerpt`)
     .then(res => {
       return res.json();
     })
@@ -10,8 +10,9 @@ async function getPosts() {
   return posts
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const posts = await getPosts()
+  // console.log(posts,"posts")
   return { 
     props: { posts } 
   }
@@ -27,9 +28,10 @@ export default function Home(props:any) {
       {posts?.map((item:any, index:number) => {
         return (
           <li  key={index}>
-            {/* <Link href="/post/[slug]" as={`/post/${item.slug}`}> */}
-              <div>{item.title}</div>
-            {/* </Link> */}
+            <Link href="/post/[slug]" as={`/post/${item.slug}`}>
+              <p>{item.title}</p>
+              {/* <p>{item.html}</p> */}
+            </Link>
           </li>
         )
       })}
