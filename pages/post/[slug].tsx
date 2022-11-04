@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 async function getPost(slug: any) {
   console.log(slug, "<<-- slug")
   const res = await fetch(`${process.env.NEXT_PUBLIC_apiurl}/content/posts/slug/${slug}?key=${process.env.NEXT_PUBLIC_apiKEY}&fields=title,slug,html`)
@@ -27,8 +29,11 @@ export default function slug(props: any) {
   const { posts } = props
   return (
     <div>
+      <Link href="/">Go Back</Link>
+    <div>
       <h1>{posts?.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: posts?.html }}></div>
+    </div>
     </div>
   )
 }

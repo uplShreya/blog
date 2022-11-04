@@ -12,7 +12,7 @@ async function getPosts() {
 
 export async function getServerSideProps() {
   const posts = await getPosts()
-   console.log(posts,"posts")
+  // console.log(posts,"posts")
   return { 
     props: { posts } 
   }
