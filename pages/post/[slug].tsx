@@ -28,12 +28,16 @@ export async function getServerSideProps(ctx: any) {
 export default function slug(props: any) {
   const { posts } = props
   return (
-    <div>
-      <Link href="/">Go Back</Link>
-    <div>
-      <h1>{posts?.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: posts?.html }}></div>
-    </div>
+    <div className="p-5 bg-gradient-to-r from-pink-200 to-yellow-200">
+      <Link href="/">
+        <button className="border border-cyan-700 rounded-full px-5 py-1 mb-5 hover:bg-cyan-600 hover:text-white">
+          Go Back
+        </button>
+      </Link>
+      <div>
+        <p className="py-5 text-cyan-800 font-bold text-xl">{posts?.title}.</p>
+        <div className="text-gray-700 text-[14px] leading-10 w-full" dangerouslySetInnerHTML={{ __html: posts?.html }}></div>
+      </div>
     </div>
   )
 }
