@@ -2,7 +2,7 @@ import Link from "next/link";
 
 async function getPost(slug: any) {
   console.log(slug, "<<-- slug")
-  const res = await fetch(`${process.env.NEXT_PUBLIC_apiurl}/content/posts/slug/${slug}?key=${process.env.NEXT_PUBLIC_apiKEY}&fields=title,slug,html`)
+  const res = await fetch(`${process.env.NEXT_PUBLIC_apiurl}/ghost/api/v3/content/posts/slug/${slug}?key=${process.env.NEXT_PUBLIC_apiKEY}&fields=title,slug,html,feature_image`)
     .then(res => {
       return res.json();
     })
