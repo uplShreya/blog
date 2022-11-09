@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useEffect } from 'react'
 
 async function getPosts() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_apiurl}/ghost/api/v3/content/posts/?key=${process.env.NEXT_PUBLIC_apiKEY}&fields=title,slug,custom_excerpt,feature_image`)
+  const res = await fetch(`${process.env.NEXT_PUBLIC_apiurl}/ghost/api/v3/content/posts/?key=${process.env.NEXT_PUBLIC_apiKEY}&fields=title,slug,custom_excerpt,feature_image,codeinjection_head`)
     .then(res => {
       return res.json();
     })
@@ -12,7 +12,7 @@ async function getPosts() {
 
 export async function getServerSideProps() {
   const posts = await getPosts()
-  // console.log(posts,"posts")
+  console.log(posts,"posts")
   return { 
     props: { posts } 
   }
